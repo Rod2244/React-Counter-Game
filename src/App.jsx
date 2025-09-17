@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import Scoreboard from "./Scoreboard";
 import Gameboard from "./Gameboard";
 import Score from "./Score";
+import ToggleMusic from "./ToggleMusic";
 import "./App.css";
-import VideoComponent from "./bg components/VideoComponents";
-
 
 function App() {
   const WINNING_SCORE = 10;
 
   const [scores, setScores] = useState({ player1: 0, player2: 0 });
   const [winner, setWinner] = useState(null);
-  const [history, setHistory] = useState([]);   // Save past games
+  const [history, setHistory] = useState([]);   // ✅ Save past games
   const [showHistory, setShowHistory] = useState(false); // ✅ Toggle
 
   // Function to update score and check winner
@@ -67,12 +66,11 @@ function App() {
   }, [winner, showHistory]);
 
   return (
-    <>
-    <VideoComponent />
     <div className="Game">
+      <ToggleMusic />
       {/*  Menu controls */}
       <Scoreboard showHistory={showHistory} setShowHistory={setShowHistory} />
-      
+
       <h1>⚡ 2 Player Click Counter Game ⚡</h1>
 
       {/*  Show either Scoreboard or History */}
@@ -93,9 +91,24 @@ function App() {
                   width: "300px"
                 }}
               >
-                <p>
-                  Player 1: {game.scores.player1} | Player 2: {game.scores.player2}
-                </p>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr", // two equal columns
+                    textAlign: "center",
+                    width: "100%"
+                  }}
+                >
+                  <div>
+                    <p style={{ margin: 0 }}>Player 1:</p>
+                    <p style={{ margin: 0, fontWeight: "bold" }}>{game.scores.player1}</p>
+                  </div>
+                  <div>
+                    <p style={{ margin: 0 }}>Player 2:</p>
+                    <p style={{ margin: 0, fontWeight: "bold" }}>{game.scores.player2}</p>
+                  </div>
+                </div>
+                
                 <p>Winner:🎉 {game.winner.toUpperCase()}</p>
               </div>
             ))
@@ -116,7 +129,6 @@ function App() {
         ⌨️ Press <b>A</b> for Player 1, <b>L</b> for Player 2, <b>R</b> to Reset
       </p>
     </div>
-    </>
   );
 }
 

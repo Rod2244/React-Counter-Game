@@ -1,4 +1,4 @@
-function Menu({ showHistory, setShowHistory }) {
+function Scoreboard({ showHistory, setShowHistory }) {
   return (
     <div style={{ marginBottom: "20px" }}>
       <button onClick={() => setShowHistory(false)} style={{ margin: "10px" }}>
@@ -11,4 +11,4 @@ function Menu({ showHistory, setShowHistory }) {
   );
 }
 
-export default Menu;
+export default Scoreboard;

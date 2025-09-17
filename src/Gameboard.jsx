@@ -3,9 +3,12 @@
 same goas to player 2 button, and a reset where it will reset the score of both players*/
 import Control from "./Control";
 
+
 function Gameboard({ updateScore, resetScores }) {
   return (
+    
     <div>
+      
       <h2>Gameboard</h2>
       <Control label="Player 1 +1" onClick={() => updateScore("player1")} />
       <Control label="Player 2 +1" onClick={() => updateScore("player2")} />
