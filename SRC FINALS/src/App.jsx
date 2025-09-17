@@ -118,7 +118,10 @@ function App() {
         <>
           <Score scores={scores} />
           {winner ? (
+            <>
             <h2>🎉 {winner.toUpperCase()} Wins! 🎉</h2>
+            <Gameboard resetScores={resetScores}/>
+            </>
           ) : (
             <Gameboard updateScore={updateScore} resetScores={resetScores} />
           )}
