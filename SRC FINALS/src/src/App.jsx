@@ -76,7 +76,7 @@ function App() {
       {/*  Show either Scoreboard or History */}
       {showHistory ? (
         <div>
-          <h2>🏆 Scoreboard</h2>
+          <h2>🏆Scoreboard🏆</h2>
           {history.length === 0 ? (
             <p>No games played yet.</p>
           ) : (
@@ -84,7 +84,7 @@ function App() {
               <div key={game.id}
                 style={{
                   border: "3px solid #000000ff",
-                  color: "#000000ff",
+                  color: "#ffffffff",
                   backgroundColor: "rgba(0, 30, 0, 0.5)",
                   boxShadow: "0 4px 6px #1b5e20",
                   backdropFilter: "blur(8px)",
