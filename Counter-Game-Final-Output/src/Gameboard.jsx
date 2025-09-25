@@ -8,8 +8,8 @@ function Gameboard({ updateScore, resetScores }) {
   return (
     
     <div>
-      
-      <h2>Gameboard</h2>
+
+      <h2>Buttons</h2>
       <Control label="Player 1 +1" onClick={() => updateScore("player1")} />
       <Control label="Player 2 +1" onClick={() => updateScore("player2")} />
       <Control label="Reset" onClick={resetScores} />

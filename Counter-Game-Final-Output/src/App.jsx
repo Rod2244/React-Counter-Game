@@ -2,18 +2,19 @@ import { useState, useEffect } from "react";
 import Scoreboard from "./Scoreboard";
 import Gameboard from "./Gameboard";
 import Score from "./Score";
+import Control from "./Control";
 import ToggleMusic from "./ToggleMusic";
 import "./App.css";
 
 function App() {
   const WINNING_SCORE = 10;
 
-  const [scores, setScores] = useState({ player1: 0, player2: 0 });
-  const [winner, setWinner] = useState(null);
-  const [history, setHistory] = useState([]);   // ✅ Save past games
-  const [showHistory, setShowHistory] = useState(false); // ✅ Toggle
+  const [scores, setScores] = useState( { player1: 0, player2: 0 } ); // State to track scores
+  const [winner, setWinner] = useState(null); // Track the winner
+  const [history, setHistory] = useState([]);   // Save past games
+  const [showHistory, setShowHistory] = useState(false); // Toggle to show history
 
-  const winningSound = new Audio("/win1.mp3");
+  const winningSound = new Audio("/win1.mp3"); // Winning sound effect
         winningSound.volume = 1.0;
         winningSound.preload = "auto";
 
@@ -25,7 +26,7 @@ function App() {
         [player]: prevScores[player] + 1,
       };
 
-      if (newScores[player] >= WINNING_SCORE) {
+      if (newScores[player] === WINNING_SCORE) {
         setWinner(player);
 
         
@@ -36,10 +37,9 @@ function App() {
       return newScores;
     });
   };
-
+  // Save game to history when there's a winner
   useEffect(() => {
     if (winner) {
-      // Save result in history
         setHistory((prev) => [
           ...prev,
           { scores, winner, id: Date.now() }
@@ -76,8 +76,8 @@ function App() {
   return (
     <div className="Game">
       <ToggleMusic />
-      {/*  Menu controls */}
-      <Scoreboard showHistory={showHistory} setShowHistory={setShowHistory} />
+      {/* Toggle between Scoreboard and History */}
+      <Scoreboard  setShowHistory={setShowHistory} />
 
       <h1>⚡ 2 Player Click Counter Game ⚡</h1>
 
@@ -109,6 +109,7 @@ function App() {
                 </div>
                 
                 <p>Winner:🎉 {game.winner.toUpperCase()}</p>
+                
               </div>
             ))
           )}
@@ -119,7 +120,7 @@ function App() {
           {winner ? (
             <>
             <h2>🎉 {winner.toUpperCase()} Wins! 🎉</h2>
-            <Gameboard resetScores={resetScores}/>
+            <Control label="Play Again" onClick={resetScores} />
             </>
           ) : (
             <Gameboard updateScore={updateScore} resetScores={resetScores} />

@@ -1,6 +1,6 @@
 import Player from "./Player";
 
-function Score({ scores }) {
+function Score( props ) {
   return (
     <div>
       <h2>Score</h2>
@@ -12,8 +12,8 @@ function Score({ scores }) {
           margin: "20px 0",
         }}
       >
-        <Player name="Player: 1" score={scores.player1} /> | {" "} | {" "} 
-        <Player name="Player: 2" score={scores.player2} /> 
+        <Player name="Player: 1" score={props.scores.player1} /> | {" "} | {" "} 
+        <Player name="Player: 2" score={props.scores.player2} /> 
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
-function Scoreboard({ showHistory, setShowHistory }) {
+import Control from "./Control";
+
+function Scoreboard({ setShowHistory }) {
   return (
     <div style={{ marginBottom: "20px" }}>
-      <button onClick={() => setShowHistory(false)} style={{ margin: "10px" }}>
-        🎮 Gamepage
-      </button>
-      <button onClick={() => setShowHistory(true)} style={{ margin: "10px" }}>
-        🏆 Scoreboard
-      </button>
+      <Control label="🎮 Gamepage" onClick={() => setShowHistory(false)}/>
+        
+
+      <Control label="🏆 Scoreboard" onClick={() => setShowHistory(true)}/>
+        
     </div>
   );
 }
